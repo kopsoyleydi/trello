@@ -1,11 +1,10 @@
 package com.example.trello.repo_services;
 
+import com.example.trello.entities.TaskCategories;
 import com.example.trello.entities.Tasks;
 
 public interface TaskCategoriesRepoService {
-    Tasks addTask(Tasks tasks);
+    void addTaskCategory(TaskCategories taskCategories);
 
-    void getTask(Long id);
-
-    void updateTask(Tasks tasks);
+    void updateTaskCategories(TaskCategories taskCategories);
 }
