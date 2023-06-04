@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface TasksRepoInterface {
 
-    void addTask(Tasks tasks);
+    Tasks addTask(Tasks tasks);
     List<Tasks> getAllTasks();
 }

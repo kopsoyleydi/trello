@@ -4,7 +4,7 @@ import com.example.trello.entities.TaskCategories;
 import com.example.trello.entities.Tasks;
 
 public interface TaskCategoriesRepoService {
-    void addTaskCategory(TaskCategories taskCategories);
+    TaskCategories addTaskCategory(TaskCategories taskCategories);
 
     void updateTaskCategories(TaskCategories taskCategories);
 }
