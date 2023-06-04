@@ -3,10 +3,10 @@
       layout:decorate="template.html">
 <div layout:fragment="site">
     <div class="container">
-        <div class="col-12" th:each="f : ${folders}">
+        <div class="col-12 mt-3" th:each="f : ${folders}">
             <label class="form-control" th:text="${f.name}">
             </label>
-            <button ></button>
+            <a th:href="@{'/detail-folder/' + ${f.id}}" class="btn btn-primary btn-sm mt-1">DETAILS</a>
         </div>
     </div>
 </div>
