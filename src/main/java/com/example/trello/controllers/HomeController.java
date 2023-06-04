@@ -3,7 +3,10 @@ package com.example.trello.controllers;
 
 import com.example.trello.entities.Folders;
 import com.example.trello.entities.TaskCategories;
+import com.example.trello.entities.Tasks;
+import com.example.trello.implementation.TaskIml;
 import com.example.trello.services.FolderService;
+import com.example.trello.services.TaskService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
@@ -18,8 +21,8 @@ import java.util.List;
 @Controller
 @RequiredArgsConstructor
 public class HomeController {
-
     private final FolderService folderService;
+    private final TaskService taskService;
     @GetMapping(value = "/")
     public String main(Model model){
         List<Folders> folders = folderService.getAllFolder();
@@ -29,7 +32,15 @@ public class HomeController {
     @GetMapping(value = "detail-folder/{folder_id}")
     public String detail_folder(@PathVariable(name = "folder_id") Long id, Model model){
         Folders folder = folderService.getFolderById(id);
+        List<Tasks> tasks = taskService.getTaskByFolderId(id);
         model.addAttribute("folder",folder);
+        model.addAttribute("tasks",tasks);
         return "folderDetails";
+    }
+    @GetMapping(value = "detail-task/{task_id}")
+    public String detail_task(@PathVariable(name = "task_id") Long id,Model model){
+        Tasks tasks = taskService.getTaskById(id);
+        model.addAttribute("task",tasks);
+        return "TaskDetail";
     }
 }

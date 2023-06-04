@@ -23,4 +23,12 @@ public class TaskIml implements TasksRepoInterface {
     public List<Tasks> getAllTasks() {
         return taskRepository.findAll();
     }
+
+    @Override
+    public List<Tasks> getTaskByFolderId(Long id) {
+        return taskRepository.getAllByFoldersId(id);
+    }
+    public Tasks getTaskById(Long id){
+        return taskRepository.findAllById(id);
+    }
 }

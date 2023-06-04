@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="template.html">
+<div layout:fragment="site">
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-6 offset-3">
+                <form th:action="@{'/saveTask'}" method="post">
+                    <div class="form-group mt-2">
+                        <label>
+                            TITLE:
+                        </label>
+                        <input type="text" class="form-control" name="title" th:value="${task.title}">
+                    </div>
+                    <div class="form-group mt-2">
+                        <label>
+                            STATUS:
+                        </label>
+                        <input type="text" class="form-control" name="status" th:value="${task.status}">
+                    </div>
+                    <div class="form-group mt-2">
+                        <label>
+                            DESCRIPTION:
+                        </label>
+                        <input type="text" class="form-control" name="description" th:value="${task.description}">
+                    </div>
+                    <div class="form-group mt-2">
+                        <button class="btn btn-primary mt-2">UPDATE</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+</html>

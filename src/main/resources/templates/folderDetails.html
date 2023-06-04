@@ -2,6 +2,48 @@
 <html lang="en" xmlns:th = "http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="template.html">
 <div layout:fragment="site">
-
+    <div class="col-12 row-cols-2 mt-3">
+        <label class="form-control" th:text="${folder.name}">
+        </label>
+        <div class="btn-group" role="group" aria-label="Basic example" th:each="f : ${folder.categories}">
+            <form>
+                <button type="button" class="btn btn-primary btn-sm" th:text="${f.name}"></button>
+                <button type="submit" class="btn btn-primary btn-sm">x</button>
+            </form>
+        </div>
+    </div>
+    <div class="container">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>
+                    ID
+                </th>
+                <th class="col-5">
+                    TASK NAME
+                </th>
+                <th>
+                    STATUS
+                </th>
+                <th>
+                    DETAILS
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="t : ${tasks}">
+                <td th:text="${t.id}">
+                </td>
+                <td class="col-5" th:text="${t.title}">
+                </td>
+                <td th:text="${t.status}">
+                </td>
+                <td>
+                    <a th:href="@{'/detailsTask/' + ${t.id}}" class="btn btn-primary btn-sm">DETAILS</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 </html>

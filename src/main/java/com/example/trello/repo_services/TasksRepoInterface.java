@@ -8,4 +8,6 @@ public interface TasksRepoInterface {
 
     Tasks addTask(Tasks tasks);
     List<Tasks> getAllTasks();
+    List<Tasks> getTaskByFolderId(Long id);
+    Tasks getTaskById(Long id);
 }
