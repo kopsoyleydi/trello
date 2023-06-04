@@ -10,4 +10,5 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public interface TaskCategoriesRepo extends JpaRepository<TaskCategories,Long> {
 
+    TaskCategories findAllById(Long id);
 }

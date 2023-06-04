@@ -5,12 +5,26 @@
     <div class="col-12 row-cols-2 mt-3">
         <label class="form-control" th:text="${folder.name}">
         </label>
-        <div class="btn-group" role="group" aria-label="Basic example" th:each="f : ${folder.categories}">
-            <form>
-                <button type="button" class="btn btn-primary btn-sm" th:text="${f.name}"></button>
-                <button type="submit" class="btn btn-primary btn-sm">x</button>
-            </form>
+        <div class="col d-flex flex-row justify-content-between">
+            <div class="btn-group" role="group" aria-label="Basic example" th:each="f : ${folder.getCategories()}">
+                <form th:action="@{'/unassign_category'}" method="post">
+                    <input type="hidden" name="folder_id" th:value="${folder.id}">
+                    <input type="hidden" name="cat_id" th:value="${f.id}">
+                    <button type="button" class="btn btn-primary btn-sm" th:text="${f.name}"></button>
+                    <button type="submit" class="btn btn-danger btn-sm">x</button>
+                </form>
+            </div>
+            <div class="btn-group" role="group" aria-label="Basic example" th:each="c : ${categories}">
+                <form th:action="@{'/assign_category'}" method="post">
+                    <input type="hidden" name="folder_id" th:value="${folder.id}">
+                    <input type="hidden" name="cat_id" th:value="${c.id}">
+                    <button type="button" class="btn btn-secondary btn-sm" th:text="${c.name}"></button>
+                    <button type="submit" class="btn btn-danger btn-sm">+</button>
+                </form>
+            </div>
+
         </div>
+
     </div>
     <div class="container">
         <table class="table table-striped">

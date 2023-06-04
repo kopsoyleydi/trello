@@ -7,4 +7,5 @@ public interface TaskCategoriesRepoService {
     TaskCategories addTaskCategory(TaskCategories taskCategories);
 
     void updateTaskCategories(TaskCategories taskCategories);
+    TaskCategories getCategoryById(Long id);
 }
