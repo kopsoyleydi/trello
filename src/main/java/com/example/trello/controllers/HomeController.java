@@ -2,15 +2,14 @@ package com.example.trello.controllers;
 
 
 import com.example.trello.entities.Folders;
+import com.example.trello.entities.StatusEntity;
 import com.example.trello.entities.TaskCategories;
 import com.example.trello.entities.Tasks;
-import com.example.trello.implementation.TaskCategoriesIml;
-import com.example.trello.implementation.TaskIml;
+import com.example.trello.repository.StatusRepo;
 import com.example.trello.services.FolderService;
 import com.example.trello.services.TaskCateService;
 import com.example.trello.services.TaskService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,6 +25,7 @@ public class HomeController {
     private final FolderService folderService;
     private final TaskService taskService;
     private final TaskCateService taskCateService;
+    private final StatusRepo statusRepo;
     @GetMapping(value = "/")
     public String main(Model model){
         List<Folders> folders = folderService.getAllFolder();
@@ -39,9 +39,17 @@ public class HomeController {
         List<TaskCategories> taskCategoriesList = taskCateService.getListOfCategories();
         taskCategoriesList.removeAll(folder.getCategories());
         model.addAttribute("categories",taskCategoriesList);
+        List<StatusEntity> statusEntityList = statusRepo.findAll();
+        model.addAttribute("status",statusEntityList);
         model.addAttribute("folder",folder);
         model.addAttribute("tasks",tasks);
         return "folderDetails";
+    }
+    @PostMapping(value = "/addTask")
+    public String addTask(Tasks tasks){
+        Long folderId = tasks.getFolders().getId();
+        taskService.addTask(tasks);
+        return "redirect:/detail-folder/" + folderId;
     }
     @GetMapping(value = "detail-task/{task_id}")
     public String detail_task(@PathVariable(name = "task_id") Long id,Model model){

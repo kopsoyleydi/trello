@@ -22,10 +22,72 @@
                     <button type="submit" class="btn btn-danger btn-sm">+</button>
                 </form>
             </div>
-
         </div>
-
     </div>
+    <div class="col align-content-start mt-3">
+        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Add Task
+        </button>
+    </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form th:action="@{'/addTask'}" method="post">
+                <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Add your task</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body col-10 mx-auto">
+                <div class="row">
+                    <div class="col-12">
+                        <label>
+                            Title
+                        </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 mt-2">
+                        <input type="text" name="title" class="form-control">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <label>
+                            Status
+                        </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 mt-2">
+                        <select name="status.id" class="form-control">
+                            <option th:each="s:${status}" th:value="${s.id}" th:text="${s.status_name}">
+
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <label>
+                            Description
+                        </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 mt-2">
+                        <input type="text" name="description" class="form-control">
+                    </div>
+                </div>
+                <input type="hidden" th:value="${folder.id}" name="folders.id">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-success">Add Task</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
     <div class="container">
         <table class="table table-striped">
             <thead>
@@ -50,7 +112,8 @@
                 </td>
                 <td class="col-5" th:text="${t.title}">
                 </td>
-                <td th:text="${t.status}">
+                <td th:text="${t.status.status_name}" th:class="${(t.status.id==1?'text-primary':(t.status.id==2?
+                'text-warning':(t.status.id==3?'text-danger':(t.status.id==4?'text-success':'text-secondary'))))}">
                 </td>
                 <td>
                     <a th:href="@{'/detailsTask/' + ${t.id}}" class="btn btn-primary btn-sm">DETAILS</a>

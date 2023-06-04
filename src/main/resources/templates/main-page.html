@@ -3,6 +3,7 @@
       layout:decorate="template.html">
 <div layout:fragment="site">
     <div class="container">
+        
         <div class="col-12 mt-3" th:each="f : ${folders}">
             <label class="form-control" th:text="${f.name}">
             </label>

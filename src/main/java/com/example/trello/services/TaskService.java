@@ -19,4 +19,7 @@ public class TaskService {
     public Tasks getTaskById(Long id){
         return taskIml.getTaskById(id);
     }
+    public void addTask(Tasks tasks){
+        taskIml.addTask(tasks);
+    }
 }

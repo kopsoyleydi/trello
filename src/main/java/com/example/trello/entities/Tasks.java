@@ -27,8 +27,8 @@ public class Tasks {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "status")
-    private int status;
+    @ManyToOne
+    private StatusEntity status;
 
     @ManyToOne
     private Folders folders;
