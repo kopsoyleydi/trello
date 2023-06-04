@@ -31,4 +31,7 @@ public class TaskIml implements TasksRepoInterface {
     public Tasks getTaskById(Long id){
         return taskRepository.findAllById(id);
     }
+    public Tasks updateTask(Tasks tasks){
+        return taskRepository.save(tasks);
+    }
 }

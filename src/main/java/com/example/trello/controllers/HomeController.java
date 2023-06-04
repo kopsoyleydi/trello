@@ -32,6 +32,11 @@ public class HomeController {
         model.addAttribute("folders", folders);
         return "main-page";
     }
+    @PostMapping(value = "/addFolder")
+    public String addFolder(Folders folders){
+        folderService.addFolder(folders);
+        return "redirect:/";
+    }
     @GetMapping(value = "detail-folder/{folder_id}")
     public String detail_folder(@PathVariable(name = "folder_id") Long id, Model model){
         Folders folder = folderService.getFolderById(id);
@@ -51,9 +56,11 @@ public class HomeController {
         taskService.addTask(tasks);
         return "redirect:/detail-folder/" + folderId;
     }
-    @GetMapping(value = "detail-task/{task_id}")
+    @GetMapping(value = "/detail-task/{task_id}")
     public String detail_task(@PathVariable(name = "task_id") Long id,Model model){
         Tasks tasks = taskService.getTaskById(id);
+        List<StatusEntity> statusEntity = statusRepo.findAll();
+        model.addAttribute("status",statusEntity);
         model.addAttribute("task",tasks);
         return "TaskDetail";
     }
@@ -63,10 +70,26 @@ public class HomeController {
         taskCateService.assign_category(folderId,catId);
         return "redirect:/detail-folder/" + folderId;
     }
-
     @PostMapping(value = "unassign_category")
     public String unassignCat(@RequestParam(name = "folder_id") Long folderId,@RequestParam(name = "cat_id") Long catId){
         taskCateService.unassign_category(folderId,catId);
         return "redirect:/detail-folder/" + folderId;
+    }
+
+    @GetMapping(value = "categories")
+    public String categories(Model model){
+        List<TaskCategories> taskCategoriesList = taskCateService.getListOfCategories();
+        model.addAttribute("categories",taskCategoriesList);
+        return "categories";
+    }
+    @PostMapping(value = "/addCategories")
+    public String addCategory(TaskCategories taskCategories){
+        taskCateService.addCategory(taskCategories);
+        return "redirect:/categories";
+    }
+    @PostMapping(value = "/saveTask")
+    public String saveTask(Tasks tasks){
+        taskService.updateTask(tasks);
+        return "redirect:/detail-folder/" + tasks.getFolders().getId();
     }
 }

@@ -48,4 +48,7 @@ public class TaskCateService {
     public List<TaskCategories> getListOfCategories(){
         return taskCategoriesIml.getAllCategories();
     }
+    public void addCategory(TaskCategories taskCategories){
+        taskCategoriesIml.addTaskCategory(taskCategories);
+    }
 }

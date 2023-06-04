@@ -18,4 +18,7 @@ public class FolderService {
     public Folders getFolderById(Long id){
         return folderIml.getFolder(id);
     }
+    public void addFolder(Folders folders){
+         folderIml.addFolder(folders);
+    }
 }

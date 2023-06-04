@@ -16,7 +16,13 @@
                         <label>
                             STATUS:
                         </label>
-                        <input type="text" class="form-control" name="status" th:value="${task.status}">
+                        <select name="status.id" class="form-control">
+                            <option th:each="s:${status}" th:value="${s.id}" th:text="${s.status_name}"
+                                    th:selected="${s.id==task.status.id}">
+                            </option>
+                        </select>
+                        <input type="hidden" th:value="${task.id}" name="id">
+                        <input type="hidden" th:value="${task.folders.id}" name="folders.id">
                     </div>
                     <div class="form-group mt-2">
                         <label>

@@ -22,4 +22,7 @@ public class TaskService {
     public void addTask(Tasks tasks){
         taskIml.addTask(tasks);
     }
+    public void updateTask(Tasks tasks){
+        taskIml.updateTask(tasks);
+    }
 }

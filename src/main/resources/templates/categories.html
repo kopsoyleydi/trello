@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th = "http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="template.html">
+<div layout:fragment="site">
+  <div class="container">
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-secondary mt-1 btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      Add Category
+    </button>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <form th:action="@{'/addCategories'}" method="post">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+            <div class="modal-body col-10 mx-auto">
+              <div class="row">
+                <div class="col-12">
+                  <label>
+                    Name
+                  </label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12 mt-2">
+                  <input type="text" name="name" class="form-control">
+                </div>
+              </div>
+            </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-success">Add category</button>
+          </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <table class="table table-striped col-4 text-center">
+      <thead>
+      <tr>
+        <th>
+          ID
+        </th>
+        <th>
+          NAME
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="t : ${categories}">
+        <td th:text="${t.id}">
+        </td>
+        <td th:text="${t.name}">
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</html>
