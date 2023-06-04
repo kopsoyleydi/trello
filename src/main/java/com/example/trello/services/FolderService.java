@@ -2,6 +2,7 @@ package com.example.trello.services;
 
 import com.example.trello.entities.Folders;
 import com.example.trello.implementation.FolderIml;
+import jakarta.persistence.PreRemove;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,5 +21,8 @@ public class FolderService {
     }
     public void addFolder(Folders folders){
          folderIml.addFolder(folders);
+    }
+    public void deleteById(Long id){
+        folderIml.deleteFolder(id);
     }
 }

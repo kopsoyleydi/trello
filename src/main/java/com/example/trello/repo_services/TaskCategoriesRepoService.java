@@ -8,4 +8,5 @@ public interface TaskCategoriesRepoService {
 
     void updateTaskCategories(TaskCategories taskCategories);
     TaskCategories getCategoryById(Long id);
+    void deleteById(Long id);
 }

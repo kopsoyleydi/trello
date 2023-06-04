@@ -10,4 +10,5 @@ public interface TasksRepoInterface {
     List<Tasks> getAllTasks();
     List<Tasks> getTaskByFolderId(Long id);
     Tasks getTaskById(Long id);
+    void deleteByid(Long id);
 }

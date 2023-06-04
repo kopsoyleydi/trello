@@ -9,6 +9,7 @@ import com.example.trello.repository.StatusRepo;
 import com.example.trello.services.FolderService;
 import com.example.trello.services.TaskCateService;
 import com.example.trello.services.TaskService;
+import jakarta.persistence.PreRemove;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -91,5 +92,10 @@ public class HomeController {
     public String saveTask(Tasks tasks){
         taskService.updateTask(tasks);
         return "redirect:/detail-folder/" + tasks.getFolders().getId();
+    }
+    @PostMapping(value = "/delete_folder")
+    public String deleteFolder(@RequestParam(name = "folder_id") Long folderId){
+        folderService.deleteById(folderId);
+        return "redirect:/";
     }
 }

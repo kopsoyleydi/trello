@@ -28,8 +28,17 @@ public class TaskCategoriesIml implements TaskCategoriesRepoService {
     public TaskCategories getCategoryById(Long id) {
         return taskCategoriesRepo.findAllById(id);
     }
+
+    @Override
+    public void deleteById(Long id) {
+        taskCategoriesRepo.deleteById(id);
+    }
+
     public List<TaskCategories> getAllCategories(){
         return taskCategoriesRepo.findAll();
+    }
+    public void deleteAll(){
+        taskCategoriesRepo.deleteAll();
     }
 
 }
