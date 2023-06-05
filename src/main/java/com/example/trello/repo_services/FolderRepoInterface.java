@@ -8,5 +8,6 @@ public interface FolderRepoInterface {
     List<Folders> findAll();
     Folders getFolder(Long id);
     void addFolder(Folders folders);
-    void deleteFolder(Long id);
+
+    void deleteFolderById(Long id);
 }

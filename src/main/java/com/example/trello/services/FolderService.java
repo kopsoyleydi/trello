@@ -23,6 +23,6 @@ public class FolderService {
          folderIml.addFolder(folders);
     }
     public void deleteById(Long id){
-        folderIml.deleteFolder(id);
+        folderIml.deleteFolderById(id);
     }
 }

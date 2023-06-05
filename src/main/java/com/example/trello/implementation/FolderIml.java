@@ -3,7 +3,7 @@ package com.example.trello.implementation;
 import com.example.trello.entities.Folders;
 import com.example.trello.repo_services.FolderRepoInterface;
 import com.example.trello.repository.FolderRepository;
-import jakarta.persistence.PreRemove;
+import jakarta.persistence.PrePersist;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,11 +33,8 @@ public class FolderIml implements FolderRepoInterface {
     public void addFolder(Folders folders) {
         repository.save(folders);
     }
-
     @Override
-    public void deleteFolder(Long id) {
-        taskCategoriesIml.deleteById(id);
-        taskIml.deleteAll();
-        deleteFolder(id);
+    public void deleteFolderById(Long id) {
+        repository.deleteById(id);
     }
 }
