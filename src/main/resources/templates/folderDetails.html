@@ -27,6 +27,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <input type="hidden" th:value="${folder.id}" name="folder_id">
                             <button type="submit" class="btn btn-success">Add category</button>
                         </div>
                     </form>
@@ -63,7 +64,7 @@
             Add Task
         </button>
         <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#delete">
-            Delete Task
+            Delete Folder
         </button>
     </div>
     <div class="modal fade" id="delete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

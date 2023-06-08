@@ -9,7 +9,6 @@ import com.example.trello.repository.StatusRepo;
 import com.example.trello.services.FolderService;
 import com.example.trello.services.TaskCateService;
 import com.example.trello.services.TaskService;
-import jakarta.persistence.PreRemove;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -77,14 +76,19 @@ public class HomeController {
         return "redirect:/detail-folder/" + folderId;
     }
 
-    @GetMapping(value = "categories")
+    @GetMapping(value = "/categories")
     public String categories(Model model){
         List<TaskCategories> taskCategoriesList = taskCateService.getListOfCategories();
         model.addAttribute("categories",taskCategoriesList);
         return "categories";
     }
     @PostMapping(value = "/addCategories")
-    public String addCategory(TaskCategories taskCategories){
+    public String addCategory(TaskCategories taskCategories,@RequestParam(name = "folder_id") Long id){
+        taskCateService.addCategory(taskCategories);
+        return "redirect:/detail-folder/" + id;
+    }
+    @PostMapping(value = "/addCategory")
+    public String addCategoryInCat(TaskCategories taskCategories){
         taskCateService.addCategory(taskCategories);
         return "redirect:/categories";
     }
@@ -95,7 +99,17 @@ public class HomeController {
     }
     @PostMapping(value = "/delete_folder")
     public String deleteFolder(@RequestParam(name = "folder_id") Long folderId){
-        folderService.deleteById(folderId);
+        folderService.deleteFolder(folderId);
         return "redirect:/";
+    }
+    @PostMapping(value = "/delete_task")
+    public String deleteTask(@RequestParam(name = "task_id") Long taskId,@RequestParam(name = "folder_id")Long folderId){
+        taskService.deleteTaskId(taskId);
+        return "redirect:/detail-folder/" + folderId;
+    }
+    @PostMapping(value = "/delete_categories")
+    public String deleteCategories(@RequestParam(name = "delete_id") Long id){
+        taskCateService.deleteCategoryById(id);
+        return "redirect:/categories";
     }
 }

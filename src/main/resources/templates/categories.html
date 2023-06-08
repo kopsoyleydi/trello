@@ -11,7 +11,7 @@
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
-          <form th:action="@{'/addCategories'}" method="post">
+          <form th:action="@{'/addCategory'}" method="post">
           <div class="modal-header">
             <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -47,6 +47,9 @@
         <th>
           NAME
         </th>
+        <th>
+          Delete
+        </th>
       </tr>
       </thead>
       <tbody>
@@ -55,6 +58,31 @@
         </td>
         <td th:text="${t.name}">
         </td>
+        <td>
+            <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal">
+              Delete Category
+            </button>
+        </td>
+        <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <form th:action="@{'/delete_categories'}" method="post">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="deleteModal1">Modal title</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  Are you sure?
+                </div>
+                <input type="hidden" th:value="${t.id}" name="delete_id">
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-danger">Delete</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
       </tr>
       </tbody>
     </table>

@@ -25,4 +25,7 @@ public class TaskService {
     public void updateTask(Tasks tasks){
         taskIml.updateTask(tasks);
     }
+    public void deleteTaskId(Long id){
+        taskIml.deleteByid(id);
+    }
 }

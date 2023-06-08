@@ -37,4 +37,7 @@ public class FolderIml implements FolderRepoInterface {
     public void deleteFolderById(Long id) {
         repository.deleteById(id);
     }
+    public void updateFolder(Folders folders){
+        repository.save(folders);
+    }
 }

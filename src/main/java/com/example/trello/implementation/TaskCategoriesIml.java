@@ -37,8 +37,5 @@ public class TaskCategoriesIml implements TaskCategoriesRepoService {
     public List<TaskCategories> getAllCategories(){
         return taskCategoriesRepo.findAll();
     }
-    public void deleteAll(){
-        taskCategoriesRepo.deleteAll();
-    }
 
 }

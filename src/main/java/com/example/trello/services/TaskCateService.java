@@ -51,4 +51,8 @@ public class TaskCateService {
     public void addCategory(TaskCategories taskCategories){
         taskCategoriesIml.addTaskCategory(taskCategories);
     }
+
+    public void deleteCategoryById(Long id){
+        taskCategoriesIml.deleteById(id);
+    }
 }
