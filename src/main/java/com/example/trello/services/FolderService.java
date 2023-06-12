@@ -30,20 +30,21 @@ public class FolderService {
     public void addFolder(Folders folders){
          folderIml.addFolder(folders);
     }
-    public void deleteFolder(Long folderId){
-        Folders folders = folderIml.getFolder(folderId);
-        List<TaskCategories> taskCategories = taskCategoriesIml.getAllCategories();
-        ArrayList<Integer> arr = new ArrayList<>();
-        for(int i = 0;i<taskCategories.size();i++){
-            if(Objects.equals(folders.getCategories().get(i).getId(), taskCategories.get(i).getId())){
-                arr.add(Math.toIntExact(taskCategories.get(i).getId()));
+    public void deleteFolder(Long folderId) {
+        Folders folder = folderIml.getFolder(folderId);
+        List<TaskCategories> taskCats = taskCategoriesIml.getAllCategories();
+        List<TaskCategories> categoriesToRemove = new ArrayList<>();
+
+        for (TaskCategories cat : folder.getCategories()) {
+            for (TaskCategories taskCat : taskCats) {
+                if (Objects.equals(cat.getId(), taskCat.getId())) {
+                    categoriesToRemove.add(cat);
+                    break;
+                }
             }
         }
-        for(int i =0;i< arr.size();i++){
-            int arrId = arr.get(i);
-            folders.getCategories().remove(arrId);
-        }
-        folderIml.updateFolder(folders);
+        folder.getCategories().removeAll(categoriesToRemove);
+        folderIml.updateFolder(folder);
         folderIml.deleteFolderById(folderId);
     }
 }

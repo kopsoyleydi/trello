@@ -3,7 +3,6 @@ package com.example.trello.implementation;
 import com.example.trello.entities.Folders;
 import com.example.trello.repo_services.FolderRepoInterface;
 import com.example.trello.repository.FolderRepository;
-import jakarta.persistence.PrePersist;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +25,7 @@ public class FolderIml implements FolderRepoInterface {
 
     @Override
     public Folders getFolder(Long id) {
-        return repository.findAllById(id);
+        return repository.findById(id).get();
     }
 
     @Override
