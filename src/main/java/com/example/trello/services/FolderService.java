@@ -4,9 +4,6 @@ import com.example.trello.entities.Folders;
 import com.example.trello.entities.TaskCategories;
 import com.example.trello.implementation.FolderIml;
 import com.example.trello.implementation.TaskCategoriesIml;
-import com.example.trello.repository.FolderRepository;
-import com.example.trello.repository.TaskCategoriesRepo;
-import jakarta.persistence.PreRemove;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
