@@ -32,6 +32,8 @@ public class HomeController {
         model.addAttribute("folders", folders);
         return "main-page";
     }
+
+
     @PostMapping(value = "/addFolder")
     public String addFolder(Folders folders){
         folderService.addFolder(folders);
